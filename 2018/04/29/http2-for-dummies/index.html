@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>HTTP2 for Dummies</title>
+  <meta property="og:title" content="HTTP2 for Dummies" />
+  <meta name="twitter:title" content="HTTP2 for Dummies" />
+  <meta name="description" content="In this article we will split the essentials you have to know about the new communications protocol HTTP/2. Furthermore, we will discover some interesting resources which will allow you to adapt to this new way of client-server information exchange in an easier way.
+">
+  <meta property="og:description" content="In this article we will split the essentials you have to know about the new communications protocol HTTP/2. Furthermore, we will discover some interesting resources which will allow you to adapt to this new way of client-server information exchange in an easier way.
+">
+  <meta name="twitter:description" content="In this article we will split the essentials you have to know about the new communications protocol HTTP/2. Furthermore, we will discover some interesting resources which will allow you to adapt to …">
+  <meta name="author" content="Daniel Rodríguez Hernández"/>
+  <link href='http://drodriguezhdez.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://drodriguezhdez.com/img/avatar-icon.png" />
+  <meta name="twitter:image" content="http://drodriguezhdez.com/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@drodriguezhdez" />
+  <meta name="twitter:creator" content="@drodriguezhdez" />
+  <meta property="og:url" content="http://drodriguezhdez.com/2018/04/29/http2-for-dummies/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="drodriguezhdez" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="http://drodriguezhdez.com/2018/04/29/http2-for-dummies/" />
+  <link rel="alternate" href="http://drodriguezhdez.com/index.xml" type="application/rss+xml" title="drodriguezhdez">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://drodriguezhdez.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://drodriguezhdez.com/css/highlight.min.css" /><link rel="stylesheet" href="http://drodriguezhdez.com/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-118374099-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://drodriguezhdez.com/">drodriguezhdez</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="drodriguezhdez" href="http://drodriguezhdez.com/">
+            <img class="avatar-img" src="http://drodriguezhdez.com/img/avatar-icon.png" alt="drodriguezhdez" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>HTTP2 for Dummies</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 29, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 0 minutes (0 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>In this article we will split the <em>essentials</em> you have to know about the new communications protocol HTTP/2. Furthermore, we will discover some interesting resources which will allow you to adapt to this new way of client-server information exchange in an easier way.
+</p>
+
+<h3 id="index">Index</h3>
+
+<ol>
+<li>Introduction</li>
+<li>What is HTTP/2?</li>
+<li>Key features</li>
+<li>How an HTTP/2 connection is established in our browser?</li>
+<li>Which browsers are supporting HTTP/2?</li>
+<li>Plugins</li>
+<li>HTTP/2 with Java</li>
+<li>Conclusions</li>
+<li>References</li>
+</ol>
+
+<h3 id="1-introduction">1. Introduction</h3>
+
+<p>The growing <a href="http://www.internetlivestats.com/internet-users/" target="_blank">amount of Internet users</a> and the intention of improving both time and performance of the client-server information exchange protocols have ended in the creation of, almost 20 years after since HTTP 1.1 version was released, the new version of the application protocol: the famous HTTP/2</p>
+
+<h3 id="2-what-is-http-2">2. What is HTTP/2?</h3>
+
+<p>HTTP/2 is the new binary application protocol <a href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">(OSI model)</a>, which has same semantics of the previous version, HTTP/1.1. That means both verbs and headers will work without appliying any change.</p>
+
+<h3 id="3-key-features">3. Key features</h3>
+
+<p>The key features we should attend are:</p>
+
+<ul>
+<li><strong>Binary protocol</strong>: Unlike the previous one, which was based on text, HTTP/2 uses direclty the machine language (binary) to exchange information. This makes it easier to interprete, less error-prone, and faster.</li>
+<li><strong>Multiplexing</strong>: HTTP/2 uses unique identifiers kept within the binary frames which are sent/received to multiplex the iinformation and be able to manage different type content with less resources.</li>
+<li><strong>Unique connection</strong>: HTTP/2 is able to handle client-server information exchange using only one connection. This makes it was specially useful to save resources, and accelerate the information exchange.</li>
+<li><strong>Headers compression</strong>: HTTP/2 brings in headers compression out-of-the-box, which allows to minimize the information exchange and reduce the latency.</li>
+<li><strong>&lsquo;Server-push&rsquo; service</strong>: HTTP/2 is able to push required resources to the browser cache using its binary connection, even before this had been able to interprete the served page HTML.</li>
+</ul>
+
+<h3 id="4-how-an-http-2-connection-is-established-in-our-browser">4. How an HTTP/2 connection is established in our browser?</h3>
+
+<p>We have to keep in mind that, regardless the encryption is not mandatory in a client-server connection based on the official HTTP/2 RFC, none browser will allow us to use HTTP/2 without encryption.</p>
+
+<p>Due to this fact, in this article it will be explained the normal way of how an HTTP/2 connection is made: Using the ALPN extension (Application Layer Protocol Negotiation) of TLS (Transport Layer Security), which is the recommended standard of connection encryption supported by the most browsers practically.</p>
+
+<p>Attending this, we should have a browser which supports HTTP/2. If we access to a certain site using HTTPS, the browser will make a TLS1.2 &ldquo;ClientHello&rdquo; request, where it will be specified if the browser supports HTTP/2 (h2 protocol) using the ALPN extension.</p>
+
+<h4 id="step-1-of-2-tls1-2-clienthello">Step 1 of 2: TLS1.2 ClientHello</h4>
+
+<p><img src="/img/clientHello_alpn.png" alt="ClientHello ALPN" /></p>
+
+<p>Following this step, the server will response with the TLS 1.2 &ldquo;ServerHello&rdquo; message using the same ALPN extension. This response will confirmed to the client that server will use HTTP/2 to established communications (h2 protocol).</p>
+
+<h4 id="step-2-of-2-tls1-2-serverhello">Step 2 of 2: TLS1.2 ServerHello</h4>
+
+<p><img src="/img/serverHello_alpn.png" alt="ServerHello ALPN" /></p>
+
+<p>From here on, the HTTP/2 connection will have been established and the server will start sending binary data frames to the browser.</p>
+
+<h3 id="5-which-browsers-supports-http-2">5. Which browsers supports HTTP/2?</h3>
+
+<p>We could know which browsers supports HTTP/2 using the following link: <a href="http://caniuse.com/#feat=http2" target="_blank">HTTP/2 supported browsers</a></p>
+
+<p>We may also check the same information using the following image extracted directly from the previous link.</p>
+
+<p><img src="/img/http2_browsers-1024x576.png" alt="HTTP2 supported browsers" /></p>
+
+<h3 id="http-2-with-java">HTTP/2 with Java</h3>
+
+<p>You have to know that, since HTTP/2 is a quite recent protocol (2015), Java does not native support for ALPN until JDK v9.</p>
+
+<p>That means if we want to use ALPN connections with JDK 1.8 or previous, it is possible we should use external libraries to startup our application depending on the servlets container or application server we were using.</p>
+
+<p>In the following link, we could take a quick look at those Java based server implementations which support HTTP/2 protocol. <a href="https://github.com/http2/http2-spec/wiki/Implementations" target="_blank">HTTP/2 supported server implementations</a></p>
+
+<h3 id="8-conclusions">8. Conclusions</h3>
+
+<p>In this article we have seen the essentials we should know about HTTP/2 being a good starting point to start our development tasks with this new protocol and the new servlets containers / application servers which support it.</p>
+
+<h3 id="9-references">9. References</h3>
+
+<ul>
+<li><a href="https://http2.github.io/" target="_blank">HTTP/2 Home Page</a></li>
+<li><a href="https://github.com/http2/http2-spec/wiki/Implementations" target="_blank">HTTP2-Spec Implementations</a></li>
+<li><a href="http://caniuse.com/#feat=http2" target="_blank">Can I Use HTTP2?</a></li>
+</ul>
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f&amp;text=HTTP2%20for%20Dummies&amp;via=drodriguezhdez"
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f&amp;title=HTTP2%20for%20Dummies" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f&amp;title=HTTP2%20for%20Dummies" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f&amp;title=HTTP2%20for%20Dummies" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fdrodriguezhdez.com%2f2018%2f04%2f29%2fhttp2-for-dummies%2f&amp;description=HTTP2%20for%20Dummies" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:daniel.rguez.hdez@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/drodriguezhdez" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/drodriguezhdez" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/danielrodriguezhernandez" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://drodriguezhdez.com/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="drodriguezhdez.com">Daniel Rodríguez Hernández</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://drodriguezhdez.com/">drodriguezhdez</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://drodriguezhdez.com/js/main.js"></script>
+<script src="http://drodriguezhdez.com/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://drodriguezhdez.com/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

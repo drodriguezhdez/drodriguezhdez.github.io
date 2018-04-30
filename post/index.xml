@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on drodriguezhdez</title>
+    <link>http://drodriguezhdez.com/post/</link>
+    <description>Recent content in Posts on drodriguezhdez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</managingEditor>
+    <webMaster>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</webMaster>
+    <lastBuildDate>Sun, 29 Apr 2018 11:39:29 +0200</lastBuildDate>
+    
+	<atom:link href="http://drodriguezhdez.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTTP2 for Dummies</title>
+      <link>http://drodriguezhdez.com/2018/04/29/http2-for-dummies/</link>
+      <pubDate>Sun, 29 Apr 2018 11:39:29 +0200</pubDate>
+      <author>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</author>
+      <guid>http://drodriguezhdez.com/2018/04/29/http2-for-dummies/</guid>
+      <description>&lt;p&gt;In this article we will split the &lt;em&gt;essentials&lt;/em&gt; you have to know about the new communications protocol HTTP/2. Furthermore, we will discover some interesting resources which will allow you to adapt to this new way of client-server information exchange in an easier way.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
