@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on drodriguezhdez</title>
-    <link>http://drodriguezhdez.com/categories/</link>
+    <link>https://drodriguezhdez.github.io/categories/</link>
     <description>Recent content in Categories on drodriguezhdez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</managingEditor>
     <webMaster>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</webMaster>
     
-	<atom:link href="http://drodriguezhdez.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://drodriguezhdez.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
