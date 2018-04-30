@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on drodriguezhdez</title>
-    <link>https://drodriguezhdez.github.io/post/</link>
-    <description>Recent content in Posts on drodriguezhdez</description>
+    <title>Http2 on drodriguezhdez</title>
+    <link>https://drodriguezhdez.github.io/tags/http2/</link>
+    <description>Recent content in Http2 on drodriguezhdez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</managingEditor>
     <webMaster>daniel.rguez.hdez@gmail.com (Daniel Rodríguez Hernández)</webMaster>
     <lastBuildDate>Mon, 30 Apr 2018 16:30:00 +0200</lastBuildDate>
     
-	<atom:link href="https://drodriguezhdez.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://drodriguezhdez.github.io/tags/http2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
