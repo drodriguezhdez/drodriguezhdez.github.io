@@ -203,7 +203,7 @@ ga('send', 'pageview');
 <li>What is HTTP/2?</li>
 <li>Key features</li>
 <li>How an HTTP/2 connection is established in our browser?</li>
-<li>Which browsers are supporting HTTP/2?</li>
+<li>Which browsers support HTTP/2?</li>
 <li>Plugins</li>
 <li>HTTP/2 with Java</li>
 <li>Conclusions</li>
@@ -250,7 +250,7 @@ ga('send', 'pageview');
 
 <p>From here on, the HTTP/2 connection will have been established and the server will start sending binary data frames to the browser.</p>
 
-<h3 id="5-which-browsers-supports-http-2">5. Which browsers supports HTTP/2?</h3>
+<h3 id="5-which-browsers-support-http-2">5. Which browsers support HTTP/2?</h3>
 
 <p>We could know which browsers supports HTTP/2 using the following link: <a href="http://caniuse.com/#feat=http2" target="_blank">HTTP/2 supported browsers</a></p>
 
@@ -258,9 +258,18 @@ ga('send', 'pageview');
 
 <p><img src="/img/http2_browsers-1024x576.png" alt="HTTP2 supported browsers" /></p>
 
-<h3 id="http-2-with-java">HTTP/2 with Java</h3>
+<h3 id="6-plugins">6. Plugins</h3>
 
-<p>You have to know that, since HTTP/2 is a quite recent protocol (2015), Java does not native support for ALPN until JDK v9.</p>
+<p>For those of you programmers who are working / experimenting with this new protocol, here you could find a couple of plugins to know if you are actually using HTTP2 protocol.</p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin" target="_blank">HTTP/2 and SPDY indicator - Chrome Plugin</a></li>
+<li><a href="https://addons.mozilla.org/es/firefox/addon/http2-indicator/" target="_blank">HTTP/2 and SPDY indicator - Firefox Plugin</a></li>
+</ul>
+
+<h3 id="7-http-2-with-java">7. HTTP/2 with Java</h3>
+
+<p>You have to know that, since HTTP/2 is a quite recent protocol (2015), Java does not have native support for ALPN until JDK v9.</p>
 
 <p>That means if we want to use ALPN connections with JDK 1.8 or previous, it is possible we should use external libraries to startup our application depending on the servlets container or application server we were using.</p>
 
